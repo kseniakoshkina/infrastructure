@@ -152,8 +152,9 @@ or it can be installed [here](https://www.anaconda.com/products/distribution) an
 
 Initialize conda environament:
 ```
-conda create --name kseniasenv
+conda create -n kseniasenv --no-default-packages -y
 conda activate kseniasenv
+conda config --add channels bioconda
 ```
 
 ```
@@ -189,4 +190,8 @@ conda install -c bioconda multiqc=1.13
 ```
 conda env export > environment_ksenia.yml
 ```
+```
+conda deactivate
+```
+
 
