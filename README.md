@@ -120,3 +120,73 @@ A popular Conda channel for bioinformatics software is Bioconda, which provides 
 The conda version is a collection of python scripts whereas the apt version is based on a C library. 
 
 The big difference between Conda and the pip package manager is in how package dependencies are managed, which is a significant challenge for Python data science and the reason Conda was created. Before Pip 20.3, Pip installed all Python package dependencies required, whether or not those conflict with other packages previously installed. Conda checks the current environment, everything that has been installed, any version limitations that the user specifies and figures out how to install compatible dependencies.
+
+## Problem [6.5]
+
+The problem itself is relatively simple. 
+
+Imagine that you developed an excellent RNA-seq analysis pipeline and want to share it with the world. Based on your experience, you are confident that the popularity of the pipeline will be proportional to its ease of use. So, you decided to help your future users and to pack all dependencies in a Conda environment and a Docker container.
+
+Here is the list of tools and their versions that are used in your work:
+* [fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/), v0.11.9
+* [STAR](https://github.com/alexdobin/STAR), v2.7.10b
+* [samtools](https://github.com/samtools/samtools), v1.16.1
+* [picard](https://github.com/broadinstitute/picard), v2.27.5
+* [salmon](https://github.com/COMBINE-lab/salmon), commit tag 1.9.0
+* [bedtools](https://github.com/arq5x/bedtools2), v2.30.0
+* [multiqc](https://github.com/ewels/MultiQC), v1.13
+
+
+**Anaconda**:
+
+* [1] Install conda, create a new virtual environment, and install all necessary packages. 
+* [0.75] You won't be able to install some tools - that's fine. List their names, and explain what should be done to make them conda-friendly ([conda-forge](https://conda-forge.org/docs/maintainer/adding_pkgs.html) channel, [bioconda](https://bioconda.github.io/contributor/workflow.html) channel). 
+* [0.25] [Export](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#exporting-the-environment-yml-file) the environment ([example](https://github.com/nf-core/clipseq/blob/master/environment.yml)) to the file and verify that it can be [rebuilt](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-from-an-environment-yml-file) from the file without problems.
+
+Since I have brew on my macos, I can install conda with brew. (To be honest, I have already had anaconda, and below there are some commands which can help me to install Anaconda)
+```
+brew install --cask anaconda
+
+```
+or it can be installed [here](https://www.anaconda.com/products/distribution) and then run with double-click the .pkg file.
+
+Initialize conda environament:
+```
+conda create --name kseniasenv
+conda activate kseniasenv
+```
+
+```
+conda install -c bioconda samtools=1.16.1
+```
+
+```
+conda install -c bioconda fastqc=0.11.9
+```
+
+```
+conda install -c bioconda star=2.7.10b
+```
+
+I had an error with picard=2.27.5, so I decided to use version 2.27.4.
+
+```
+conda install -c bioconda picard=2.27.4
+```
+
+```
+conda install -c bioconda salmon=1.9.0
+```
+
+```
+conda install -c bioconda bedtools=2.30.0
+```
+
+```
+conda install -c bioconda multiqc=1.13
+```
+
+```
+conda env export > environment_ksenia.yml
+```
+
