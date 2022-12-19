@@ -157,6 +157,7 @@ conda activate kseniasenv
 conda config --add channels bioconda
 ```
 In general, since we added bioconda channel with command above, we don't need to add argument bioconda below, but anyway....
+Samtools:
 ```
 conda install -c bioconda samtools=1.16.1 
 ```
@@ -164,33 +165,33 @@ or
 ```
 conda install samtools=1.16.1 
 ```
-
+FASTQC:
 ```
 conda install -c bioconda fastqc=0.11.9
 ```
-
+STAR:
 ```
 conda install -c bioconda star=2.7.10b
 ```
 
 I had an error with picard=2.27.5, so I decided to use version 2.27.4.
-
+Picard:
 ```
 conda install -c bioconda picard=2.27.4
 ```
-
+Salmon:
 ```
 conda install -c bioconda salmon=1.9.0
 ```
-
+Bedtools:
 ```
 conda install -c bioconda bedtools=2.30.0
 ```
-
+MultiQC:
 ```
 conda install -c bioconda multiqc=1.13
 ```
-
+Export:
 ```
 conda env export > environment_ksenia.yml
 ```
