@@ -194,4 +194,10 @@ conda env export > environment_ksenia.yml
 conda deactivate
 ```
 
+Checking if everything is fine in our environment:
+```
+conda remove --name kseniasenv --all -y
+conda env create -f environment_ksenia.yml
+```
+
 
