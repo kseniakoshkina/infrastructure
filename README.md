@@ -157,6 +157,7 @@ conda activate kseniasenv
 conda config --add channels bioconda
 ```
 In general, since we added bioconda channel with command above, we don't need to add argument bioconda below, but anyway....
+
 Samtools:
 ```
 conda install -c bioconda samtools=1.16.1 
