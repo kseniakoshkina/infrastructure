@@ -313,14 +313,12 @@ LABEL website="github.com"
 
 # REQUIRED PACKAGES
 RUN apt-get update \
-&& apt-get install -y apt-utils=2.0.2ubuntu0.2  \
-&& apt-get install -y wget=1.19.4-1ubuntu2.2 \
-&& apt-get install -y apt-transport-https=2.0.2ubuntu0.2 \
-&& apt-get install -y openjdk-11-jre=11.0.17+8-1ubuntu2~18.04 \
-&& apt-get install -y unzip=6.0-25ubuntu1.1 \ 
-&& apt-get install -y python3-pip=22.3.1-5ubuntu1.5 \
-&& apt-get clean \
-&& rm -rf /var/lib/apt/lists/*
+&& apt-get install -y --no-install-recommends apt-utils=2.0.2ubuntu0.2  \
+wget=1.19.4-1ubuntu2.2 \
+apt-transport-https=2.0.2ubuntu0.2 \
+openjdk-11-jre=11.0.17+8-1ubuntu2~18.04 \
+unzip=6.0-25ubuntu1.1 \ 
+python3-pip=22.3.1-5ubuntu1.5 
 
 ARG DEBIAN_FRONTEND=noninteractive
 
