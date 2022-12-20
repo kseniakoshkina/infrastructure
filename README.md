@@ -234,22 +234,26 @@ vim Dockerfile
 
 My Dockerfile:
 ```
+# IMAGE
 FROM debian
 
+# METADATA
 MAINTAINER <ksenia.koshkinaa@gmail.com>
 
+# REQUIRED PACKAGES
 RUN apt-get update\
 && apt-get install -y apt-utils \
-&& apt-get install -y wget \
-&& apt-get install -y apt-transport-https \
-&& apt-get install -y openjdk-11-jre \
-&& apt-get install -y unzip \ 
-&& apt-get install -y python3-pip
+wget \
+apt-transport-https \
+openjdk-11-jre \
+unzip \ 
+python3-pip
 
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN touch /.bashrc
 
+# PACKAGES FOR ANALYSIS
 RUN wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip \
     && unzip fastqc_v0.11.9.zip \
     && rm fastqc_v0.11.9.zip \
@@ -298,7 +302,9 @@ docker run --rm -it dockerfile
 
 Dockerfile after linter:
 ```
+# IMAGE
 FROM debian:jessie
+
 # METADATA
 LABEL maintainer="Ksenia Koshkina <ksenia.koshkinaa@gmail.com>"
 
