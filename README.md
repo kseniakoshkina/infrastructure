@@ -214,14 +214,6 @@ conda env create -f environment_ksenia.yml
 * [1] Use [hadolint](https://hadolint.github.io/hadolint/) and remove as many reported warnings as possible.
 * [0.5] Add relevant [labels](https://docs.docker.com/engine/reference/builder/#label), e.g. maintainer, version, etc. ([hint](https://medium.com/@chamilad/lets-make-your-docker-image-better-than-90-of-existing-ones-8b1e5de950d))
 
-**Docker**:
-* [3] Create a Dockerfile for a container with **all** required dependencies. Don't forget about comments; test that all tools are accessible and work inside the container. Hints:
- - If needed, grant rights to execute downloaded/compiled binaries using chmod (`chmod a+x BINARY_NAME`)
- - Move all executables to $PATH folders (e.g.`/usr/local/bin`) to make them accessible without specifying the full path.
- - Typical command to run a container interactively (`-it`) and delete on exit(`--rm`): `docker run --rm -it name:tag`
-* [1] Use [hadolint](https://hadolint.github.io/hadolint/) and remove as many reported warnings as possible.
-* [0.5] Add relevant [labels](https://docs.docker.com/engine/reference/builder/#label), e.g. maintainer, version, etc. ([hint](https://medium.com/@chamilad/lets-make-your-docker-image-better-than-90-of-existing-ones-8b1e5de950d))
-
 Installation of Docker:
 ```
 brew install docker
