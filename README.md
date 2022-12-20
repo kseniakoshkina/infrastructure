@@ -307,6 +307,9 @@ FROM debian:jessie
 
 # METADATA
 LABEL maintainer="Ksenia Koshkina <ksenia.koshkinaa@gmail.com>"
+LABEL version="1.0"
+LABEL description="Docker container for Bioinfo Analysis"
+LABEL website="github.com"
 
 # REQUIRED PACKAGES
 RUN apt-get update \
