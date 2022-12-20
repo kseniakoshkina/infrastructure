@@ -370,3 +370,18 @@ So, after changing Docker Image and some transformation in the code, I got this 
 
 Hint: `conda env create --quiet -f environment.yml && conda clean -a` ([example](https://github.com/nf-core/clipseq/blob/master/Dockerfile))
 
+**Conda dockerfile:**
+
+```
+FROM continuumio/anaconda3
+
+# METADATA
+LABEL maintainer="Ksenia Koshkina <ksenia.koshkinaa@gmail.com>"
+
+# REQUIRED PACKAGES
+RUN apt-get update \
+&& apt-get install -y apt-util \
+apt-transport-https \
+&& conda env create --quiet -f environment_ksenia.yml && conda clean -a \
+```
+
