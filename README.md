@@ -291,5 +291,79 @@ Build Dockerfile:
 ```
 docker build -t dockerfile .
 ```
+Run Dockerfile:
+```
+docker run --rm -it dockerfile
+```
 
+Dockerfile after linter:
+```
+FROM debian:jessie
+# METADATA
+LABEL maintainer="Ksenia Koshkina <ksenia.koshkinaa@gmail.com>"
+
+# REQUIRED PACKAGES
+RUN apt-get update \
+&& apt-get install -y apt-utils=2.0.2ubuntu0.2  \
+&& apt-get install -y wget=1.19.4-1ubuntu2.2 \
+&& apt-get install -y apt-transport-https=2.0.2ubuntu0.2 \
+&& apt-get install -y openjdk-11-jre=11.0.17+8-1ubuntu2~18.04 \
+&& apt-get install -y unzip=6.0-25ubuntu1.1 \ 
+&& apt-get install -y python3-pip=22.3.1-5ubuntu1.5 \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/*
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN touch /.bashrc
+
+# PACKAGES FOR ANALYSIS
+RUN wget https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v0.11.9.zip \
+    && unzip fastqc_v0.11.9.zip \
+    && rm fastqc_v0.11.9.zip \
+    && chmod a+x FastQC/fastqc \
+    && echo 'alias fastqc="/FastQC/fastqc"' >> /.bashrc
+
+RUN wget https://github.com/samtools/samtools/archive/refs/tags/1.16.1.zip -O ./samtools-1.16.1.zip \
+    && unzip samtools-1.16.1.zip \
+    && rm samtools-1.16.1.zip \
+    && mv samtools-1.16.1/misc samtools \
+    && rm -r samtools-1.16.1 \
+    && echo 'alias samtools="/samtools/samtools.pl"' >> /.bashrc
+
+RUN wget https://github.com/broadinstitute/picard/releases/download/2.27.5/picard.jar -O /bin/picard.jar && \
+    chmod a+x /bin/picard.jar \
+    && echo 'alias picard="java -jar /bin/picard.jar"' >> /.bashrc
+
+RUN wget https://github.com/arq5x/bedtools2/releases/download/v2.30.0/bedtools.static.binary -O /bin/bedtools.static.binary && \
+    chmod a+x /bin/bedtools.static.binary \
+    && echo 'alias bedtools="/bin/bedtools.static.binary"' >> /.bashrc
+
+RUN wget https://github.com/alexdobin/STAR/releases/download/2.7.10b/STAR_2.7.10b.zip \
+    && unzip STAR_2.7.10b.zip \
+    && rm STAR_2.7.10b.zip \
+    && chmod a+x STAR_2.7.10b/Linux_x86_64_static/STAR \
+    && mv STAR_2.7.10b/Linux_x86_64_static/STAR /bin/STAR \
+    && rm -r STAR_2.7.10b
+
+RUN wget https://github.com/COMBINE-lab/salmon/releases/download/v1.9.0/salmon-1.9.0_linux_x86_64.tar.gz \
+    && tar -zxvf salmon-1.9.0_linux_x86_64.tar.gz \
+    && rm salmon-1.9.0_linux_x86_64.tar.gz \
+    && chmod a+x salmon-1.9.0_linux_x86_64/bin/salmon \
+    && mv salmon-1.9.0_linux_x86_64/bin/salmon /bin/salmon \
+    && rm -r salmon-1.9.0_linux_x86_64 
+
+RUN pip install multiqc==1.13
+```
+
+## Extra points [1.5]
+
+You will be awarded extra points for the following:
+* [0.5] Using [multi-stage builds](https://docs.docker.com/build/building/multi-stage/) in Docker. E.g. to build STAR and copy only the executable to the final image.
+
+* [0.75] Minimizing the size of the final Docker image. That is, removing all intermediates, unnecessary binaries/caches, etc. Don't forget to compare & report the final size before and after all the optimizations.
+
+* [0.25] Create an extra Dockerfile that starts from [a conda base image](https://hub.docker.com/r/continuumio/anaconda3) and builds everything from your conda environment file. 
+
+Hint: `conda env create --quiet -f environment.yml && conda clean -a` ([example](https://github.com/nf-core/clipseq/blob/master/Dockerfile))
 
