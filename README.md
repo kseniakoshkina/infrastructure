@@ -364,7 +364,7 @@ You will be awarded extra points for the following:
 * [0.75] Minimizing the size of the final Docker image. That is, removing all intermediates, unnecessary binaries/caches, etc. Don't forget to compare & report the final size before and after all the optimizations.
 
 So, after changing Docker Image and some transformation in the code, I got this size:
-![Comparison](http://url/to/img.png)
+![Comparison](https://github.com/kseniakoshkina/infrastructure/blob/dependencies/change.png)
 
 * [0.25] Create an extra Dockerfile that starts from [a conda base image](https://hub.docker.com/r/continuumio/anaconda3) and builds everything from your conda environment file. 
 
