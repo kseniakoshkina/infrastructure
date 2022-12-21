@@ -92,16 +92,38 @@ ssh -i /Users/ico/Desktop/key.txt xenoonn@51.250.91.192
 
 I downloaded Genome:
 ![genome](https://github.com/kseniakoshkina/infrastructure/blob/remoteservers/genome.png)
+```
+wget https://ftp.ensembl.org/pub/release-108/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+wget https://ftp.ensembl.org/pub/release-108/gff3/homo_sapiens/Homo_sapiens.GRCh38.108.gff3.gz
+```
 
 Unzip genome:
 ```
 gunzip Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
 ```
 
-Install samtools:
+Install samtools and tabix:
 ```
 sudo apt install samtools
+sudo apt install tabix
 ```
+
+Index with samtools:
+```
+samtools faidx Homo_sapiens.GRCh38.dna.primary_assembly.fa
+```
+With indexing GFF file, I had an error with sorting, so I found a solution at biostar and downloaded this package: https://github.com/billzt/gff3sort
+
+My commands:
+```
+gunzip Homo_sapiens.GRCh38.108.gff3.gz
+/home/xenoonn/gff3sort-1.0.0/gff3sort.pl --precise --chr_order natural Homo_sapiens.GRCh38.108.gff3 | bgzip > file.gff.gz
+tabix -p gff file.gff.gz
+```
+Everything worked!
+
+
+
 * [1] Select and download BED files for three ChIP-seq and one ATAC-seq experiment from the ENCODE (use one tissue/cell line). Sort, bgzip, and index them using tabix.
 
 **JBrowse 2**
