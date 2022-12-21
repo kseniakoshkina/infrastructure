@@ -89,6 +89,9 @@ ssh -i /Users/ico/Desktop/key.txt xenoonn@51.250.91.192
 
 
 * [1] Download the latest human genome assembly (GRCh38) from the Ensemble FTP server ([fasta](https://ftp.ensembl.org/pub/release-108/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz), [GFF3](https://ftp.ensembl.org/pub/release-108/gff3/homo_sapiens/Homo_sapiens.GRCh38.108.gff3.gz)). Index the fasta using samtools (`samtools faidx`) and GFF3 using tabix. 
+
+I downloaded Genome:
+![genome](https://github.com/kseniakoshkina/infrastructure/blob/remoteservers/genome.png)
 * [1] Select and download BED files for three ChIP-seq and one ATAC-seq experiment from the ENCODE (use one tissue/cell line). Sort, bgzip, and index them using tabix.
 
 **JBrowse 2**
