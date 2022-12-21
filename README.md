@@ -168,7 +168,9 @@ tabix sorted_atac_seq.bed.gz
 * [1] Download and install [JBrowse 2](https://jbrowse.org/jb2/). Create a new jbrowse [repository](https://jbrowse.org/jb2/docs/cli/#jbrowse-create-localpath) in `/mnt/JBrowse/` (or some other folder).
 ```
 sudo apt install npm
-npm install -g @jbrowse/cli
+sudo npm install -g @jbrowse/cli
+
+jbrowse create LOCALPATH
 ```
  
 * [0.25] Install nginx and amend its config(/etc/nginx/nginx.conf) to contain the following section:
@@ -190,6 +192,10 @@ http {
 
   # ........
 }
+```
+
+```
+sudo apt install nginx
 ```
 
 * [0.25] Restart the nginx (reload its config) and make sure that you can access the browser using a link like this: `http://64.129.58.13/jbrowse/`. Here `64.129.58.13` is your public IP address.
