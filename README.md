@@ -105,6 +105,7 @@ gunzip Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
 Install samtools and tabix:
 ```
 sudo apt install samtools
+sudo apt install bedtools
 sudo apt install tabix
 ```
 
@@ -125,6 +126,43 @@ Everything worked!
 
 
 * [1] Select and download BED files for three ChIP-seq and one ATAC-seq experiment from the ENCODE (use one tissue/cell line). Sort, bgzip, and index them using tabix.
+
+Chip-Seqs
+```
+wget https://www.encodeproject.org/files/ENCFF705FOO/@@download/ENCFF705FOO.bed.gz 
+mv ENCFF705FOO.bed.gz chip_seq1.bed.gz
+wget https://www.encodeproject.org/files/ENCFF223FPA/@@download/ENCFF223FPA.bed.gz 
+mv ENCFF223FPA.bed.gz chip_seq2.bed.gz
+wget https://www.encodeproject.org/files/ENCFF218OLP/@@download/ENCFF218OLP.bed.gz 
+mv ENCFF218OLP.bed.gz chip_seq3.bed.gz
+```
+Atac-Seq
+```
+wget https://www.encodeproject.org/files/ENCFF009JLD/@@download/ENCFF009JLD.bed.gz 
+mv ENCFF009JLD.bed.gz atac_seq.bed.gz
+```
+Sort BED files:
+```
+bedtools sort -i chip_seq1.bed.gz > sorted_chip_seq1.bed
+bedtools sort -i chip_seq2.bed.gz > sorted_chip_seq2.bed
+bedtools sort -i chip_seq3.bed.gz > sorted_chip_seq3.bed
+bedtools sort -i atac_seq.bed.gz > sorted_atac_seq.bed
+```
+Back to .gz:
+```
+bgzip sorted_chip_seq1.bed
+bgzip sorted_chip_seq2.bed
+bgzip sorted_chip_seq3.bed
+bgzip sorted_atac_seq.bed
+```
+Sort with tabix:
+```
+tabix sorted_chip_seq1.bed.gz
+tabix sorted_chip_seq2.bed.gz
+tabix sorted_chip_seq3.bed.gz
+tabix sorted_atac_seq.bed.gz
+```
+
 
 **JBrowse 2**
 * [1] Download and install [JBrowse 2](https://jbrowse.org/jb2/). Create a new jbrowse [repository](https://jbrowse.org/jb2/docs/cli/#jbrowse-create-localpath) in `/mnt/JBrowse/` (or some other folder).
