@@ -213,10 +213,6 @@ http {
   server {
                 listen 80;
                 index index.html;
-
-                location /jbrowse/ {
-                        alias /xenoonn/LOCALPATH/;
-                }
         }
 
   # ........
