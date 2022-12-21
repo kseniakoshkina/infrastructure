@@ -92,6 +92,16 @@ ssh -i /Users/ico/Desktop/key.txt xenoonn@51.250.91.192
 
 I downloaded Genome:
 ![genome](https://github.com/kseniakoshkina/infrastructure/blob/remoteservers/genome.png)
+
+Unzip genome:
+```
+gunzip Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz
+```
+
+Install samtools:
+```
+sudo apt install samtools
+```
 * [1] Select and download BED files for three ChIP-seq and one ATAC-seq experiment from the ENCODE (use one tissue/cell line). Sort, bgzip, and index them using tabix.
 
 **JBrowse 2**
