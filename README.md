@@ -73,6 +73,21 @@ Imagine wrapping up a large bioinformatics project and wanting to share raw data
 
 **Remote Server**:
 * [2] Create a new virtual machine in the Yandex/Mail/etc cloud (order at least 10GB of free disk space). Generate SSH key pair and use it to connect to your server.
+I've created Virtual Machine in Yandex Cloud:
+![VM](https://github.com/kseniakoshkina/infrastructure/blob/remoteservers/vm.png)
+
+Before it, I generated ssh-key with this command:
+```
+ssh-keygen -t ed25519
+```
+I got two files with private and public key.
+
+Then I connected to VM with this command:
+```
+ssh -i /Users/ico/Desktop/key.txt xenoonn@51.250.91.192
+```
+
+
 * [1] Download the latest human genome assembly (GRCh38) from the Ensemble FTP server ([fasta](https://ftp.ensembl.org/pub/release-108/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz), [GFF3](https://ftp.ensembl.org/pub/release-108/gff3/homo_sapiens/Homo_sapiens.GRCh38.108.gff3.gz)). Index the fasta using samtools (`samtools faidx`) and GFF3 using tabix. 
 * [1] Select and download BED files for three ChIP-seq and one ATAC-seq experiment from the ENCODE (use one tissue/cell line). Sort, bgzip, and index them using tabix.
 
