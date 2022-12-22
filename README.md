@@ -207,21 +207,6 @@ sudo vim nginx.conf
 
 * [0.25] Restart the nginx (reload its config) and make sure that you can access the browser using a link like this: `http://64.129.58.13/jbrowse/`. Here `64.129.58.13` is your public IP address.
 ```
-http {
-  # Don't touch other options!
-  # ........
-  # ........
-
-  # Add this:
-  server {
-                listen 80;
-                index index.html;
-        }
-
-  # ........
-}
-```
-```
 sudo nginx -s reload
 ```
 
