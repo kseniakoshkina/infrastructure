@@ -221,12 +221,14 @@ http {
   # ........
 }
 ```
+```
 sudo nginx -s reload
 ```
 
 
 
 * [1] Add your files (BED & FASTA & GFF3) to the genome browser and verify that everything works as intended. Don't forget to [index](https://jbrowse.org/jb2/docs/cli/#jbrowse-text-index) the genome annotation, so you could later search by gene names.
+
 ```
 sudo jbrowse add-assembly Homo_sapiens.GRCh38.dna.primary_assembly.fa --load copy --out /mnt/JBrowse/
 sudo jbrowse add-track file.gff.gz --load copy --out /mnt/JBrowse/
@@ -234,7 +236,6 @@ sudo jbrowse add-track sorted_atac_seq.bed.gz --load copy --out /mnt/JBrowse/
 sudo jbrowse add-track sorted_chip_seq1.bed.gz --load copy --out /mnt/JBrowse/
 sudo jbrowse add-track sorted_chip_seq2.bed.gz --load copy --out /mnt/JBrowse/
 sudo jbrowse add-track sorted_chip_seq3.bed.gz --load copy --out /mnt/JBrowse/
-
 ```
 Link:
 http://51.250.91.192/jbrowse/?session=share-0UO_XlTV22&password=VNZVO
