@@ -169,8 +169,8 @@ tabix sorted_atac_seq.bed.gz
 ```
 sudo apt install npm
 sudo npm install -g @jbrowse/cli
-
-jbrowse create LOCALPATH
+cd /mnt
+sudo jbrowse create JBrowse
 ```
  
 * [0.25] Install nginx and amend its config(/etc/nginx/nginx.conf) to contain the following section:
@@ -203,6 +203,9 @@ cd /etc/nginx
 ```
 sudo vim nginx.conf
 ```
+
+
+* [0.25] Restart the nginx (reload its config) and make sure that you can access the browser using a link like this: `http://64.129.58.13/jbrowse/`. Here `64.129.58.13` is your public IP address.
 ```
 http {
   # Don't touch other options!
@@ -218,12 +221,24 @@ http {
   # ........
 }
 ```
+sudo nginx -s reload
+```
 
-
-* [0.25] Restart the nginx (reload its config) and make sure that you can access the browser using a link like this: `http://64.129.58.13/jbrowse/`. Here `64.129.58.13` is your public IP address.
 
 
 * [1] Add your files (BED & FASTA & GFF3) to the genome browser and verify that everything works as intended. Don't forget to [index](https://jbrowse.org/jb2/docs/cli/#jbrowse-text-index) the genome annotation, so you could later search by gene names.
+```
+sudo jbrowse add-assembly Homo_sapiens.GRCh38.dna.primary_assembly.fa --load copy --out /mnt/JBrowse/
+sudo jbrowse add-track file.gff.gz --load copy --out /mnt/JBrowse/
+sudo jbrowse add-track sorted_atac_seq.bed.gz --load copy --out /mnt/JBrowse/
+sudo jbrowse add-track sorted_chip_seq1.bed.gz --load copy --out /mnt/JBrowse/
+sudo jbrowse add-track sorted_chip_seq2.bed.gz --load copy --out /mnt/JBrowse/
+sudo jbrowse add-track sorted_chip_seq3.bed.gz --load copy --out /mnt/JBrowse/
+
+```
+Link:
+http://51.250.91.192/jbrowse/?session=share-0UO_XlTV22&password=VNZVO
+
 
 
 **Remember to put a persistent link to a JBrowse 2 session with all your BED files and the genome annotation in the report (like [this](https://jbrowse.org/code/jb2/v2.3.1/?session=share-HShsEcnq3i&password=nYzTU)). I must be able to access it without problems.**
