@@ -236,7 +236,7 @@ sudo jbrowse add-track chip_seq3_new.bed.gz --load copy --out /mnt/JBrowse/
 
 Link:
 
-
+http://51.250.91.192/jbrowse/?session=share-KC-spuoDQM&password=cLF8r
 **Remember to put a persistent link to a JBrowse 2 session with all your BED files and the genome annotation in the report (like [this](https://jbrowse.org/code/jb2/v2.3.1/?session=share-HShsEcnq3i&password=nYzTU)). I must be able to access it without problems.**
 
 
