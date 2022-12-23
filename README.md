@@ -151,26 +151,26 @@ bedtools sort -i atac_seq.bed.gz > sorted_atac_seq.bed
 
 To change chromosomes in bed files, we need to run these commands:
 ```
-awk '{gsub(/^chr/,""); print}' sorted_atac_seq.bed > $(echo sort_atac.bed| cut -d '.' -f 1)'_new.bed'
-awk '{gsub(/^chr/,""); print}' sorted_chip_seq1.bed > $(echo $sort_chip_1.bed| cut -d '.' -f 1)'_new.bed'
-awk '{gsub(/^chr/,""); print}' sorted_chip_seq2.bed > $(echo sort_chip_2.bed| cut -d '.' -f 1)'_new.bed'
-awk '{gsub(/^chr/,""); print}' sorted_chip_seq3.bed > $(echo sort_chip_3.bed| cut -d '.' -f 1)'_new.bed'
+awk '{gsub(/^chr/,""); print}' sorted_atac_seq.bed > $(echo atac_seq.bed| cut -d '.' -f 1)'_new.bed'
+awk '{gsub(/^chr/,""); print}' sorted_chip_seq1.bed > $(echo chip_seq1.bed| cut -d '.' -f 1)'_new.bed'
+awk '{gsub(/^chr/,""); print}' sorted_chip_seq2.bed > $(echo chip_seq2.bed| cut -d '.' -f 1)'_new.bed'
+awk '{gsub(/^chr/,""); print}' sorted_chip_seq3.bed > $(echo chip_seq3.bed| cut -d '.' -f 1)'_new.bed'
 ```
 
 
 Back to .gz:
 ```
-bgzip sorted_chip_seq1_new.bed
-bgzip sorted_chip_seq2_new.bed
-bgzip sorted_chip_seq3_new.bed
-bgzip sorted_atac_seq_new.bed
+bgzip atac_seq_new.bed 
+bgzip chip_seq1_new.bed
+bgzip chip_seq2_new.bed
+bgzip chip_seq3_new.bed
 ```
 Sort with tabix:
 ```
-tabix sorted_chip_seq1_new.bed.gz
-tabix sorted_chip_seq2_new.bed.gz
-tabix sorted_chip_seq3_new.bed.gz
-tabix sorted_atac_seq_new.bed.gz
+tabix atac_seq_new.bed.gz
+tabix chip_seq1_new.bed.gz
+tabix chip_seq2_new.bed.gz
+tabix chip_seq3_new.bed.gz
 ```
 
 
@@ -227,16 +227,14 @@ sudo nginx -s reload
 ```
 sudo jbrowse add-assembly Homo_sapiens.GRCh38.dna.primary_assembly.fa --load copy --out /mnt/JBrowse/
 sudo jbrowse add-track file.gff.gz --load copy --out /mnt/JBrowse/
-sudo jbrowse add-track sorted_atac_seq.bed_new.gz --load copy --out /mnt/JBrowse/
-sudo jbrowse add-track sorted_chip_seq1.bed_new.gz --load copy --out /mnt/JBrowse/
-sudo jbrowse add-track sorted_chip_seq2.bed_new.gz --load copy --out /mnt/JBrowse/
-sudo jbrowse add-track sorted_chip_seq3.bed_new.gz --load copy --out /mnt/JBrowse/
+sudo jbrowse add-track atac_seq_new.bed.gz --load copy --out /mnt/JBrowse/
+sudo jbrowse add-track chip_seq1_new.bed.gz --load copy --out /mnt/JBrowse/
+sudo jbrowse add-track chip_seq2_new.bed.gz --load copy --out /mnt/JBrowse/
+sudo jbrowse add-track chip_seq3_new.bed.gz --load copy --out /mnt/JBrowse/
 ```
 
 
 Link:
-http://51.250.91.192/jbrowse/?session=share-0UO_XlTV22&password=VNZVO
-
 
 
 **Remember to put a persistent link to a JBrowse 2 session with all your BED files and the genome annotation in the report (like [this](https://jbrowse.org/code/jb2/v2.3.1/?session=share-HShsEcnq3i&password=nYzTU)). I must be able to access it without problems.**
